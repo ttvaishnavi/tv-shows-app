@@ -1,6 +1,7 @@
 <script>
 import axios from 'axios'
 import MovieCard from './MovieCard.vue'
+import { API_BASE_URL } from '../constants'
 
 export default {
   components: {
@@ -22,7 +23,7 @@ export default {
   },
   mounted() {
     axios
-      .get('https://api.tvmaze.com/shows')
+      .get(`${API_BASE_URL}/shows`)
       .then((response) => {
         this.shows = response.data
         this.genres = [...new Set(this.shows.flatMap((show) => show.genres))]

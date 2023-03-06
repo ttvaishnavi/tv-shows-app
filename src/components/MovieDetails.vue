@@ -24,11 +24,11 @@ export default {
   },
   methods: {
     async fetchMovieDetails() {
-      const response = await axios.get(`${API_BASE_URL}/${this.id}`)
+      const response = await axios.get(`${API_BASE_URL}/shows/${this.id}`)
       this.movie = response?.data
     },
     async fetchEpisodeDetails() {
-      const response = await axios.get(`${API_BASE_URL}/${this.id}/episodes`)
+      const response = await axios.get(`${API_BASE_URL}/shows/${this.id}/episodes`)
       this.episodes = response?.data
     },
     goBack() {

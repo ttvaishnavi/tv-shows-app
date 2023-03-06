@@ -1,4 +1,6 @@
 <script>
+import { API_BASE_URL } from '../constants'
+
 export default {
   emits: ['searchResults'],
   props: {
@@ -14,7 +16,7 @@ export default {
   methods: {
     async search() {
       try {
-        const url = this.movieName ? `https://api.tvmaze.com/search/shows?q=${this.movieName}` : `https://api.tvmaze.com/search/shows`
+        const url = this.movieName ? `${API_BASE_URL}/search/shows?q=${this.movieName}` : `${API_BASE_URL}/search/shows`
         const response = await fetch(url)
         const data = await response.json()
         this.results = data?.map((item) => item.show)

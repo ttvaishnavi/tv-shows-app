@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'https://api.tvmaze.com/shows'
+export const API_BASE_URL = 'https://api.tvmaze.com'
 export const routeNames = {
   DASHBOARD: 'Dashboard',
   MOVIE_DETAILS: 'MovieDetails'
