@@ -1,12 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import DashboardView from '../views/DashboardView.vue'
+import { routeNames } from '../constants'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      name: 'Dashboard',
+      name: routeNames.DASHBOARD,
       component: DashboardView
     },
     {

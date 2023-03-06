@@ -1,6 +1,6 @@
 <script>
 export default {
-  emits: ['search-results'],
+  emits: ['searchResults'],
   props: {
     isMovieDetailsPage: Boolean
   },
@@ -17,7 +17,7 @@ export default {
         const response = await fetch(`https://api.tvmaze.com/search/shows?q=${this.movieName}`)
         const data = await response.json()
         this.results = data.map((item) => item.show)
-        this.$emit('search-results', this.results)
+        this.$emit('searchResults', this.results)
       } catch (error) {
         console.log('search error', error)
       }
@@ -59,9 +59,9 @@ export default {
 
 <style scoped>
 .search-input {
-  width: 300px
+  width: 300px;
 }
 .navbar-collapse {
-  justify-content: flex-end
+  justify-content: flex-end;
 }
 </style>

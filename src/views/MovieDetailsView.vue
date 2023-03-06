@@ -20,7 +20,7 @@ export default {
 <template>
   <div class="details">
     <header>
-      <AppHeader @search-results="handleSearchEvent" :isMovieDetailsPage="true"></AppHeader>
+      <AppHeader @searchResults="handleSearchEvent" :isMovieDetailsPage="true"></AppHeader>
     </header>
     <main>
       <ShowDetails :id="id" />

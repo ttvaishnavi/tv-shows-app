@@ -22,7 +22,7 @@ export default {
 
 <template>
   <header>
-    <AppHeader @search-results="handleSearchEvent" :isMovieDetailsPage="false"></AppHeader>
+    <AppHeader @searchResults="handleSearchEvent" :isMovieDetailsPage="false"></AppHeader>
   </header>
   <main>
     <GenreList :searchedShows="this.searchResults"></GenreList>

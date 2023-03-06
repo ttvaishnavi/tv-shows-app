@@ -1,4 +1,5 @@
 <script>
+import { routeNames } from '../constants';
 export default {
   props: {
     title: {
@@ -21,7 +22,7 @@ export default {
   },
   methods: {
     showMovieDetails(data) {
-      this.$router.push({ name: 'MovieDetails', params: { id: data?.id } })
+      this.$router.push({ name: routeNames.MOVIE_DETAILS, params: { id: data?.id } })
     }
   }
 }
