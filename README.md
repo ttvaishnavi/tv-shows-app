@@ -25,7 +25,7 @@ This is a TV Shows app built using Vue 3 and Vite. The app fetches TV Show data 
 1. Clone the repository from github:
 
 ```sh
-git clone https://github.com/your-username/tv-shows-app.git
+git clone https://github.com/ttvaishnavi/tv-shows-app.git
 ```
 
 2. Install the dependencies
