@@ -22,7 +22,7 @@ describe('AppHeader.vue', () => {
       fetch: () => Promise.resolve(mockResponse)
     }))
 
-    const input = wrapper.find('.search-input')
+    const input = wrapper.find('.form-control')
     wrapper.vm.search()
     expect(input.exists()).toBeTruthy()
     input.setValue('test')
