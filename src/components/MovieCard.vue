@@ -1,4 +1,5 @@
 <script>
+import { routeNames } from '../constants'
 export default {
   props: {
     title: {
@@ -10,8 +11,8 @@ export default {
       required: false
     },
     summary: {
-      type: String
-      // required: true
+      type: String,
+      required: false
     },
     imageSrc: {
       type: String,
@@ -21,14 +22,14 @@ export default {
   },
   methods: {
     showMovieDetails(data) {
-      this.$router.push({ name: 'MovieDetails', params: { id: data?.id } })
+      this.$router.push({ name: routeNames.MOVIE_DETAILS, params: { id: data?.id } })
     }
   }
 }
 </script>
 
 <template>
-  <li class="movie-card" @click="showMovieDetails(movie)">
+  <li class="movie-card" @click="showMovieDetails(movie)" tabindex="0" type="link">
     <img :src="movie?.image?.medium || movie?.image?.original" :alt="movie.name" />
     <div class="movie-details">
       <p>Rating: {{ movie.rating?.average || 'NA' }}</p>

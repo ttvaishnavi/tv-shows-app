@@ -1,6 +1,8 @@
 <script>
+import { API_BASE_URL } from '../constants'
+
 export default {
-  emits: ['search-results'],
+  emits: ['searchResults'],
   props: {
     isMovieDetailsPage: Boolean
   },
@@ -14,10 +16,13 @@ export default {
   methods: {
     async search() {
       try {
-        const response = await fetch(`https://api.tvmaze.com/search/shows?q=${this.movieName}`)
+        const url = this.movieName ? `${API_BASE_URL}/search/shows?q=${this.movieName}` : `${API_BASE_URL}/search/shows`
+        const response = await fetch(url)
         const data = await response.json()
-        this.results = data.map((item) => item.show)
-        this.$emit('search-results', this.results)
+        this.results = data?.map((item) => item.show)
+        this.$emit('searchResults', { results: this.results, 
+          noMatchFound: this.results.length === 0 ? true : false
+        })
       } catch (error) {
         console.log('search error', error)
       }
@@ -27,41 +32,28 @@ export default {
 </script>
 
 <template>
-  <nav class="navbar navbar-dark navbar-expand-lg bg-dark fixed-top">
+  <nav class="navbar navbar-dark bg-dark fixed-top">
     <div class="container-fluid">
       <a class="navbar-brand" href="/">My TV Shows</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form v-if="!isMovieDetailsPage" class="d-flex" role="search">
-          <input
-            class="form-control search-input"
-            type="search"
-            placeholder="Search Movies"
-            v-model="movieName"
-            aria-label="Search"
-            v-on:keyup="search"
-          />
-        </form>
-      </div>
+      <form v-if="!isMovieDetailsPage" class="d-flex" role="search">
+        <input
+          class="form-control me-2"
+          type="search"
+          placeholder="Search Movies"
+          v-model="movieName"
+          aria-label="Search"
+          v-on:keyup="search"
+        />
+      </form>
     </div>
   </nav>
 </template>
 
 <style scoped>
 .search-input {
-  width: 300px
+  width: 300px;
 }
 .navbar-collapse {
-  justify-content: flex-end
+  justify-content: flex-end;
 }
 </style>

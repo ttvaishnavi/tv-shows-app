@@ -1,13 +1,18 @@
 <script>
 import axios from 'axios'
 import MovieCard from './MovieCard.vue'
+import { API_BASE_URL } from '../constants'
 
 export default {
   components: {
     MovieCard
   },
   props: {
-    searchedShows: {}
+    searchedShows: {},
+    noSearchMatchFound: {
+      type: Boolean,
+      required: false
+    }
   },
   data() {
     return {
@@ -18,7 +23,7 @@ export default {
   },
   mounted() {
     axios
-      .get('https://api.tvmaze.com/shows')
+      .get(`${API_BASE_URL}/shows`)
       .then((response) => {
         this.shows = response.data
         this.genres = [...new Set(this.shows.flatMap((show) => show.genres))]
@@ -45,6 +50,9 @@ export default {
 </script>
 
 <template>
+  <h2 class="not-found" v-if="noSearchMatchFound">
+  No Match found
+  </h2>
   <div v-if="searchedShows.length > 1" class="grid grid-search">
     <MovieCard
       v-for="(show, index) in searchedShows"
@@ -55,7 +63,7 @@ export default {
       :movie="show"
     />
   </div>
-  <div v-else class="grid-container" v-for="(genre, index) in genres" :key="index">
+  <div v-if="!searchedShows.length && !noSearchMatchFound" class="grid-container" v-for="(genre, index) in genres" :key="index">
     <h2>{{ genre }}</h2>
     <div class="grid">
       <MovieCard
@@ -90,7 +98,22 @@ export default {
   padding-top: 5rem;
 }
 .grid-search {
-  grid-template-columns: repeat(5, auto);
+  grid-template-columns: repeat(1, auto);
+}
+@media screen and (min-width: 550px) {
+  .grid-search {
+    grid-template-columns: repeat(2, auto);
+  }
+}
+@media screen and (min-width: 700px) {
+  .grid-search {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+@media screen and (min-width: 999px) {
+  .grid-search {
+    grid-template-columns: repeat(5, auto);
+  }
 }
 h2 {
   padding-left: 10px;
@@ -111,5 +134,9 @@ h2 {
 
 .wrapper-item:hover {
   transform: scale(1.1);
+}
+
+.not-found{
+  margin-top: 6rem;
 }
 </style>

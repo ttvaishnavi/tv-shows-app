@@ -1,10 +1,11 @@
 <script>
 import axios from 'axios'
-import EpisodesTable from './SeasonsTab.vue'
+import SeasonsTab from './SeasonsTab.vue'
+import { API_BASE_URL } from '../constants'
 
 export default {
   components: {
-    EpisodesTable
+    SeasonsTab
   },
   props: {
     id: {
@@ -23,12 +24,12 @@ export default {
   },
   methods: {
     async fetchMovieDetails() {
-      const response = await axios.get(`https://api.tvmaze.com/shows/${this.id}`)
-      this.movie = response.data
+      const response = await axios.get(`${API_BASE_URL}/shows/${this.id}`)
+      this.movie = response?.data
     },
     async fetchEpisodeDetails() {
-      const response = await axios.get(`https://api.tvmaze.com/shows/${this.id}/episodes`)
-      this.episodes = response.data
+      const response = await axios.get(`${API_BASE_URL}/shows/${this.id}/episodes`)
+      this.episodes = response?.data
     },
     goBack() {
       this.$router.push({ name: 'Dashboard' })
@@ -41,19 +42,25 @@ export default {
     <button type="button" class="btn btn-secondary" @click="goBack()">Back</button>
   </div>
   <div class="movie-details">
-    <div class="movie-image">
-      <img :src="movie?.image?.medium" :alt="movie.name" />
-    </div>
-    <div class="movie-info">
-      <h1>{{ movie.name }}</h1>
-      <p v-html="movie.summary"></p>
-      <div class="movie-genre">
-        <h6>Genres:</h6>
-        <div class="genre-name">{{ movie?.genres?.toString() }}</div>
+    <div class="row">
+      <div class="col-2">
+        <div class="movie-image">
+          <img :src="movie?.image?.medium" :alt="movie?.name" />
+        </div>
+      </div>
+      <div class="col-10">
+        <div class="movie-info">
+          <h1>{{ movie?.name }}</h1>
+          <p v-html="movie?.summary"></p>
+          <div class="movie-genre">
+            <h6>Genres:</h6>
+            <div class="genre-name">{{ movie?.genres?.toString() }}</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <EpisodesTable :episodes="episodes" />
+  <SeasonsTab :episodes="episodes" />
 </template>
 
 <style scoped>
@@ -64,11 +71,8 @@ export default {
   margin-top: 4rem;
   margin-bottom: 2em;
 }
-.movie-image {
-  margin-right: 2rem;
-}
 .movie-image img {
-  /* max-width: 100%; */
+  width: 100%;
   height: auto;
 }
 .movie-info h1 {

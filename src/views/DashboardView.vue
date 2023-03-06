@@ -9,12 +9,19 @@ export default {
   },
   data() {
     return {
-      searchResults: {}
+      searchResults: {},
+      noMatchFound: false
     }
   },
   methods: {
     handleSearchEvent(data) {
-      this.searchResults = data
+      if(data?.noMatchFound) {
+        this.searchResults = {}
+        this.noMatchFound = true
+      } else {
+      this.searchResults = data?.results 
+      this.noMatchFound = false
+      }
     }
   }
 }
@@ -22,9 +29,9 @@ export default {
 
 <template>
   <header>
-    <AppHeader @search-results="handleSearchEvent" :isMovieDetailsPage="false"></AppHeader>
+    <AppHeader @searchResults="handleSearchEvent" :isMovieDetailsPage="false"></AppHeader>
   </header>
   <main>
-    <GenreList :searchedShows="this.searchResults"></GenreList>
+    <GenreList :searchedShows="this.searchResults" :noSearchMatchFound="this.noMatchFound"></GenreList>
   </main>
 </template>

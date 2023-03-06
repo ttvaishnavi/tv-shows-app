@@ -10,5 +10,9 @@ module.exports = {
   ],
   parserOptions: {
     ecmaVersion: 'latest'
+  },
+  plugins: ["jest"],
+  env: {
+    "jest/globals": true
   }
 }

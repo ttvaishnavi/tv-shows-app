@@ -13,18 +13,18 @@ export default {
 
   computed: {
     filteredSeasons() {
-      return [...new Set(this.episodes.map((episode) => episode.season))]
+      return [...new Set(this.episodes?.map((episode) => episode.season))]
     }
   },
   methods: {
     setActiveSeason(index) {
       this.activeSeason = index
-      this.seasons = [...new Set(this.episodes.map((episode) => episode.season))]
-      this.seasonEpisodes = this.episodes.reduce((acc, episode) => {
-        if (!acc[episode.season]) {
-          acc[episode.season] = []
+      this.seasons = [...new Set(this.episodes?.map((episode) => episode.season))]
+      this.seasonEpisodes = this.episodes?.reduce((acc, episode) => {
+        if (!acc[episode?.season]) {
+          acc[episode?.season] = []
         }
-        acc[episode.season].push(episode)
+        acc[episode?.season].push(episode)
         return acc
       }, {})
     }
@@ -63,11 +63,11 @@ export default {
       :class="{ 'tab-pane': true, active: activeSeason === index }"
     >
       <div class="episode-image">
-        <img :src="episode?.image?.medium" :alt="episode.name" />
+        <img :src="episode?.image?.medium" :alt="episode?.name" />
       </div>
       <div class="episode-info">
-        <h4>{{ episode.name }}</h4>
-        <p v-html="episode.summary"></p>
+        <h4>{{ episode?.name }}</h4>
+        <p v-html="episode?.summary"></p>
       </div>
     </div>
   </div>
