@@ -42,15 +42,21 @@ export default {
     <button type="button" class="btn btn-secondary" @click="goBack()">Back</button>
   </div>
   <div class="movie-details">
-    <div class="movie-image">
-      <img :src="movie?.image?.medium" :alt="movie?.name" />
-    </div>
-    <div class="movie-info">
-      <h1>{{ movie?.name }}</h1>
-      <p v-html="movie?.summary"></p>
-      <div class="movie-genre">
-        <h6>Genres:</h6>
-        <div class="genre-name">{{ movie?.genres?.toString() }}</div>
+    <div class="row">
+      <div class="col-2">
+        <div class="movie-image">
+          <img :src="movie?.image?.medium" :alt="movie?.name" />
+        </div>
+      </div>
+      <div class="col-10">
+        <div class="movie-info">
+          <h1>{{ movie?.name }}</h1>
+          <p v-html="movie?.summary"></p>
+          <div class="movie-genre">
+            <h6>Genres:</h6>
+            <div class="genre-name">{{ movie?.genres?.toString() }}</div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -65,11 +71,8 @@ export default {
   margin-top: 4rem;
   margin-bottom: 2em;
 }
-.movie-image {
-  margin-right: 2rem;
-}
 .movie-image img {
-  /* max-width: 100%; */
+  width: 100%;
   height: auto;
 }
 .movie-info h1 {

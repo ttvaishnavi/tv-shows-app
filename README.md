@@ -7,6 +7,7 @@ This is a TV Shows app built using Vue 3 and Vite. The app fetches TV Show data 
 - Browse TV Shows: Users can browse through a list of popular TV Shows, view their details and episodes list.
 - Search for TV Shows: Users can search for TV Shows by name and view details of their favorite TV Shows.
 - Horizontal Scrolling: TV Shows are grouped by genres, sorted by ratings and shown in an horizontal list to make it mobile friendly
+- Web and mobile friendly user interface
 
 ## Technologies Used
 

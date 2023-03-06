@@ -1,5 +1,5 @@
 <script>
-import { routeNames } from '../constants';
+import { routeNames } from '../constants'
 export default {
   props: {
     title: {
@@ -11,8 +11,8 @@ export default {
       required: false
     },
     summary: {
-      type: String
-      // required: true
+      type: String,
+      required: false
     },
     imageSrc: {
       type: String,
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <template>
-  <li class="movie-card" @click="showMovieDetails(movie)">
+  <li class="movie-card" @click="showMovieDetails(movie)" tabindex="0" type="link">
     <img :src="movie?.image?.medium || movie?.image?.original" :alt="movie.name" />
     <div class="movie-details">
       <p>Rating: {{ movie.rating?.average || 'NA' }}</p>
