@@ -61,3 +61,10 @@ npm run lint
 ## API Usage
 
 This app uses the [TVmaze API](http://www.tvmaze.com/api) to fetch TV Show data. You can find the API documentation [here](https://www.tvmaze.com/api#show-main-information).
+
+
+## Screenshots
+<img width="1792" alt="Screenshot 2023-03-06 at 19 40 16" src="https://user-images.githubusercontent.com/127038402/223201728-d7d13028-9e7f-4e15-b875-22d403495578.png">
+<img width="1792" alt="Screenshot 2023-03-06 at 19 40 29" src="https://user-images.githubusercontent.com/127038402/223201761-a7743581-6164-4dda-9062-bf2afc6321da.png">
+<img width="1790" alt="Screenshot 2023-03-06 at 19 41 01" src="https://user-images.githubusercontent.com/127038402/223201767-2f4b711a-ba5d-49c2-b4cd-4c5ed980400a.png">
+
